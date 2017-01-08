@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="apple">
+        <!-- apple -->
+        <environment id="apple">
+            <transactionManager type="MANAGED">
+                <property name="closeConnection" value="false"/>
+            </transactionManager>
+            <dataSource type="JNDI">
+                <property name="data_source" value="jdbc/apple_data_source"/>
+            </dataSource>
+        </environment>
+        <!-- pineapple -->
+        <environment id="pineapple">
+            <transactionManager type="MANAGED">
+                <property name="closeConnection" value="false"/>
+            </transactionManager>
+            <dataSource type="JNDI">
+                <property name="data_source" value="jdbc/pineapple_data_source"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper class="sample.payara.mybatis.mapper.AppleMyBatisMapper"/>
+        <mapper class="sample.payara.mybatis.mapper.PineappleMyBatisMapper"/>
+    </mappers>
+</configuration>
