@@ -13,7 +13,7 @@ import sample.payara.model.SampleModel;
  */
 @Stateless
 public class SampleEjb {
-    @PersistenceContext(unitName = "main")
+    @PersistenceContext(unitName = "apple")
     private EntityManager em;
 
     public SampleModel sampleModel() {
