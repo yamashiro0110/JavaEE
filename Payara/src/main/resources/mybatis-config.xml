@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 
+    Glassfishに登録したJNDIリソースを利用する 
+    data_sourceの指定が必須
+    -->
     <environments default="apple">
         <!-- apple -->
         <environment id="apple">
@@ -21,6 +25,7 @@
             </dataSource>
         </environment>
     </environments>
+    <!-- Mapperの登録が必須 -->
     <mappers>
         <mapper class="sample.payara.mybatis.mapper.AppleMyBatisMapper"/>
         <mapper class="sample.payara.mybatis.mapper.PineappleMyBatisMapper"/>

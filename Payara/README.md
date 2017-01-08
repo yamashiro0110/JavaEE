@@ -19,3 +19,7 @@ glassfishを起動した状態で以下を実行してJDBCリソースを登録�
 ```sh
 $ asadmin add-resources src/main/webapp/WEB-INF/glassfish-resources.xml
 ```
+
+### MyBatis
+
+- `src/main/resources/mybatis-config.xml`
