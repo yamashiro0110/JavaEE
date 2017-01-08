@@ -1,4 +1,4 @@
-package sample.payara.ejb;
+package sample.payara.dao;
 
 import java.util.List;
 
@@ -8,11 +8,8 @@ import javax.persistence.PersistenceContext;
 
 import sample.payara.model.SampleModel;
 
-/**
- * Created by yamashiro-r on 2016/12/04.
- */
 @Stateless
-public class SampleEjb {
+public class SampleModelDao {
     @PersistenceContext(unitName = "apple")
     private EntityManager em;
 
