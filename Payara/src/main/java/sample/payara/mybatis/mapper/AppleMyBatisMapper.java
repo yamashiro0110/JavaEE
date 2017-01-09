@@ -6,8 +6,10 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 
 import sample.payara.model.MyBatisUser;
+import sample.payara.mybatis.param.MyBatisUserSearchParam;
 
 public interface AppleMyBatisMapper {
 
@@ -34,6 +36,9 @@ public interface AppleMyBatisMapper {
         "from sample_model s",
         "where s.id = #{id}"
     })
-    public MyBatisUser findBy(@Param("id") Long id);
+    public MyBatisUser findById(@Param("id") Long id);
+
+    @SelectProvider(type = MyBatisMapperSqlBuilder.class, method = "findByParamSql")
+    public List<MyBatisUser> findByParam(@Param("param") MyBatisUserSearchParam param);
 
 }

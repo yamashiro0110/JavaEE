@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -12,6 +14,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import sample.payara.model.MyBatisUser;
+import sample.payara.mybatis.param.MyBatisUserSearchParam;
 import sample.payara.mybatis.repotiroy.AppleMyBatisRepository;
 import sample.payara.mybatis.repotiroy.PineappleMyBatisRepository;
 
@@ -33,15 +36,23 @@ public class MyBatisController {
     @GET
     @Path("apple/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public MyBatisUser search(@PathParam("id") Long id) {
+    public MyBatisUser search(@PathParam("id") final Long id) {
         return appleMyBatisRepository.findBy(id);
     }
 
     @GET
     @Path("pineapple/search")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<MyBatisUser> search(@QueryParam("name") String name) {
+    public List<MyBatisUser> search(@QueryParam("name") final String name) {
         return pineappleMyBatisRepository.findByName(name);
+    }
+
+    @POST
+    @Path("apple/search")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<MyBatisUser> search(final MyBatisUserSearchParam param) {
+        return appleMyBatisRepository.findBy(param);
     }
 
 }
