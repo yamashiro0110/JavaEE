@@ -24,21 +24,21 @@ public class MyBatisController {
     private PineappleMyBatisRepository pineappleMyBatisRepository;
 
     @GET
-    @Path("list")
+    @Path("apple/list")
     @Produces(MediaType.APPLICATION_JSON)
     public List<MyBatisUser> list() {
         return this.appleMyBatisRepository.findAll();
     }
 
     @GET
-    @Path("{id}")
+    @Path("apple/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public MyBatisUser search(@PathParam("id") Long id) {
         return appleMyBatisRepository.findBy(id);
     }
 
     @GET
-    @Path("search")
+    @Path("pineapple/search")
     @Produces(MediaType.APPLICATION_JSON)
     public List<MyBatisUser> search(@QueryParam("name") String name) {
         return pineappleMyBatisRepository.findByName(name);

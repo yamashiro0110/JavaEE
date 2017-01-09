@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -19,7 +21,11 @@ import sample.payara.mybatis.qualifier.PineappleDataSource;
 
 @Stateless
 public class MyBatisSqlSessionProvidor {
+    @AppleDataSource
+    @Inject
     private SqlSessionFactory appleSessionFactory;
+    @PineappleDataSource
+    @Inject
     private SqlSessionFactory pineappleSessionFactory;
 
     private SqlSessionFactory create(String environment) {
@@ -31,10 +37,18 @@ public class MyBatisSqlSessionProvidor {
         }
     }
 
-    @PostConstruct
-    void postConstructor() {
-        this.appleSessionFactory = this.create("apple");
-        this.pineappleSessionFactory = this.create("pineapple");
+    @ApplicationScoped
+    @AppleDataSource
+    @Produces
+    public SqlSessionFactory appleSessionFactory() {
+        return this.create("apple");
+    }
+
+    @ApplicationScoped
+    @PineappleDataSource
+    @Produces
+    public SqlSessionFactory pineappleSessionFactory() {
+        return this.create("pineapple");
     }
 
     @RequestScoped
@@ -44,10 +58,21 @@ public class MyBatisSqlSessionProvidor {
         return appleSessionFactory.openSession();
     }
 
+    public void closeAppleSession(@Disposes @AppleDataSource SqlSession sqlSession) {
+        // FIXME: closeは必要?
+        sqlSession.close();
+    }
+
     @RequestScoped
     @PineappleDataSource
     @Produces
     public SqlSession pineappleSession() {
         return pineappleSessionFactory.openSession();
     }
+
+    public void closePineappleSession(@Disposes @PineappleDataSource SqlSession sqlSession) {
+        // FIXME: closeは必要?
+        sqlSession.close();
+    }
+
 }
