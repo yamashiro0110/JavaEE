@@ -8,9 +8,9 @@ import sample.payara.mybatis.param.MyBatisUserSearchParam;
 public class MyBatisMapperSqlBuilder {
 
     public String findByParamSql(@Param("param") final MyBatisUserSearchParam param) {
-        SQL sql = new SQL()
-                .SELECT("*")
-                .FROM("sample_model s");
+        SQL sql = new SQL();
+        sql.SELECT("*");
+        sql.FROM("sample_model s");
 
         if (param.hasId()) {
             sql.WHERE("s.id = #{param.id}");
