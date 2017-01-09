@@ -2,6 +2,8 @@
 
 Payaraを試す
 
+> DBはh2データベースをサーバモードで起動しておく
+
 ### entry point
 
 - `sample.payara.Application`
