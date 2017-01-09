@@ -28,6 +28,7 @@
     <!-- Mapperの登録が必須 -->
     <mappers>
         <mapper class="sample.payara.mybatis.mapper.AppleMyBatisMapper"/>
+        <mapper class="sample.payara.mybatis.mapper.AppleMyBatisXmlMapper"/>
         <mapper class="sample.payara.mybatis.mapper.PineappleMyBatisMapper"/>
     </mappers>
 </configuration>

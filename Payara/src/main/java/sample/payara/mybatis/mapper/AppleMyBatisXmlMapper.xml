@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.payara.mybatis.mapper.AppleMyBatisXmlMapper">
+    <resultMap type="sample.payara.model.MyBatisUser" id="MyBatisUser">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="created" property="created"/>
+        <result column="updated" property="updated"/>
+    </resultMap>
+    <select id="findById" resultMap="MyBatisUser">
+        SELECT *
+          FROM sample_model s
+        <where>
+            AND s.id = #{id}
+        </where>
+    </select>
+    <select id="findByParam" resultMap="MyBatisUser">
+        SELECT *
+          FROM sample_model s
+        <where>
+            <if test="param.hasId()">
+                AND s.id = #{param.id}
+            </if>
+            <if test="param.hasName()">
+                <bind name="pattern" value="param.name + '%'"/>
+                AND s.name LIKE #{pattern}
+            </if>
+        </where>
+    </select>
+</mapper>

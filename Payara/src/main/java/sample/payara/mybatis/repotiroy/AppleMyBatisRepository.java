@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import sample.payara.model.MyBatisUser;
 import sample.payara.mybatis.mapper.AppleMyBatisMapper;
+import sample.payara.mybatis.mapper.AppleMyBatisXmlMapper;
 import sample.payara.mybatis.param.MyBatisUserSearchParam;
 import sample.payara.mybatis.qualifier.AppleDataSource;
 
@@ -22,6 +23,10 @@ public class AppleMyBatisRepository {
         return sqlSession.getMapper(AppleMyBatisMapper.class);
     }
 
+    private AppleMyBatisXmlMapper xmlMapper() {
+        return sqlSession.getMapper(AppleMyBatisXmlMapper.class);
+    }
+
     public List<MyBatisUser> findAll() {
         return mapper().findAll();
     }
@@ -32,6 +37,10 @@ public class AppleMyBatisRepository {
 
     public List<MyBatisUser> findBy(final MyBatisUserSearchParam param) {
         return mapper().findByParam(param);
+    }
+
+    public List<MyBatisUser> findByXmlMapper(final MyBatisUserSearchParam param) {
+        return xmlMapper().findByParam(param);
     }
 
 }

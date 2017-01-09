@@ -55,4 +55,12 @@ public class MyBatisController {
         return appleMyBatisRepository.findBy(param);
     }
 
+    @POST
+    @Path("apple/search/xml_mapper")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<MyBatisUser> searchByXmlMapper(final MyBatisUserSearchParam param) {
+        return appleMyBatisRepository.findByXmlMapper(param);
+    }
+
 }
