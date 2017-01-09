@@ -1,4 +1,4 @@
-package sample.payara.mybatis.dao;
+package sample.payara.mybatis.repotiroy;
 
 import java.util.List;
 
@@ -9,16 +9,16 @@ import org.apache.ibatis.session.SqlSession;
 
 import sample.payara.model.MyBatisUser;
 import sample.payara.mybatis.mapper.PineappleMyBatisMapper;
-import sample.payara.mybatis.provider.MyBatisPineappleSessionProvider;
+import sample.payara.mybatis.qualifier.PineappleDataSource;
 
 @Stateless
-public class PineappleMyBatisDao {
+public class PineappleMyBatisRepository {
     @Inject
-    private MyBatisPineappleSessionProvider sessionProvider;
+    @PineappleDataSource
+    private SqlSession sqlSession;
 
     private PineappleMyBatisMapper mapper() {
-        SqlSession session = this.sessionProvider.sqlSession();
-        return session.getMapper(PineappleMyBatisMapper.class);
+        return sqlSession.getMapper(PineappleMyBatisMapper.class);
     }
 
     public List<MyBatisUser> findByName(String name) {

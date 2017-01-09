@@ -12,36 +12,36 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import sample.payara.model.MyBatisUser;
-import sample.payara.mybatis.dao.AppleMyBatisDao;
-import sample.payara.mybatis.dao.PineappleMyBatisDao;
+import sample.payara.mybatis.repotiroy.AppleMyBatisRepository;
+import sample.payara.mybatis.repotiroy.PineappleMyBatisRepository;
 
 @Stateless
 @Path("mybatis")
 public class MyBatisController {
     @Inject
-    private AppleMyBatisDao appleMyBatisDao;
+    private AppleMyBatisRepository appleMyBatisRepository;
     @Inject
-    private PineappleMyBatisDao pineappleMyBatisDao;
+    private PineappleMyBatisRepository pineappleMyBatisRepository;
 
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
     public List<MyBatisUser> list() {
-        return this.appleMyBatisDao.findAll();
+        return this.appleMyBatisRepository.findAll();
     }
 
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public MyBatisUser search(@PathParam("id") Long id) {
-        return appleMyBatisDao.findBy(id);
+        return appleMyBatisRepository.findBy(id);
     }
 
     @GET
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
     public List<MyBatisUser> search(@QueryParam("name") String name) {
-        return pineappleMyBatisDao.findByName(name);
+        return pineappleMyBatisRepository.findByName(name);
     }
 
 }
