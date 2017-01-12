@@ -1,4 +1,4 @@
-package sample.payara.controller;
+package sample.payara.controller.sample;
 
 import java.util.List;
 
