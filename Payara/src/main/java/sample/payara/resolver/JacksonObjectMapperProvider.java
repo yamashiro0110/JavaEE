@@ -17,6 +17,7 @@ public class JacksonObjectMapperProvider implements ContextResolver<ObjectMapper
     public ObjectMapper getContext(final Class<?> arg0) {
         return new ObjectMapper()
                 .enable(SerializationFeature.INDENT_OUTPUT)
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 .setVisibility(PropertyAccessor.SETTER, Visibility.NONE)
                 .setVisibility(PropertyAccessor.GETTER, Visibility.NONE)
                 .setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES)
