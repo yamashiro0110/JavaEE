@@ -46,6 +46,7 @@ public class ArquillianTest {
         List<MyBatisUser> users = this.appleMyBatisRepository.findAll();
         Assert.assertNotNull(users);
         Assert.assertFalse(users.isEmpty());
+        users.forEach(System.out::println);
     }
 
 }

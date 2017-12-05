@@ -1,17 +1,18 @@
 package sample.payara.model;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString
 public class MyBatisUser {
     @JsonProperty
     private Long id = null;
