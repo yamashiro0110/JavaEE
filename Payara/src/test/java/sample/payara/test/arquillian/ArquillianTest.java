@@ -14,7 +14,6 @@ import sample.payara.model.MyBatisUser;
 import sample.payara.mybatis.repotiroy.AppleMyBatisRepository;
 
 import javax.inject.Inject;
-import java.nio.file.Paths;
 import java.util.List;
 
 @RunWith(Arquillian.class)
@@ -29,7 +28,7 @@ public class ArquillianTest {
         return ShrinkWrap.create(WebArchive.class, "ArquillianTest.war")
                 .addPackages(true, Application.class.getPackage())
                 .addAsResource("mybatis-config.xml")
-                .addAsResource(Paths.get("src/main/webapp/META-INF/", "persistence.xml").toFile());
+                .addAsResource("META-INF/persistence.xml");
     }
 
     @Test
