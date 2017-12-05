@@ -10,6 +10,7 @@
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -17,6 +18,13 @@ targetCompatibility = 1.8
 repositories {
     mavenCentral()
     jcenter()
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
 }
 
 dependencies {
@@ -30,6 +38,11 @@ dependencies {
     compileOnly 'fish.payara.blue.extras:payara-embedded-all:4.1.1.164'
 
     testCompile 'junit:junit:4.12'
+    testCompile 'org.jboss.arquillian:arquillian-bom:1.1.15.Final'
+    testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.15.Final'
+    testCompile 'org.jboss.arquillian.extension:arquillian-persistence-dbunit:1.0.0.Alpha7'
+    testCompile 'org.jboss.arquillian.container:arquillian-glassfish-embedded-3.1:1.0.2'
+    testCompileOnly 'fish.payara.blue.extras:payara-embedded-all:4.1.1.164'
 }
 
 sourceSets {

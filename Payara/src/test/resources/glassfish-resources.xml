@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <!-- apple -->
+    <jdbc-resource pool-name="apple_pool" jndi-name="jdbc/apple_data_source"></jdbc-resource>
+    <jdbc-connection-pool name="apple_pool" datasource-classname="org.h2.jdbcx.JdbcDataSource">
+        <property name="user" value="sa"></property>
+        <property name="password" value=""></property>
+        <property name="driverClass" value="org.h2.Driver"></property>
+        <property name="url" value="jdbc:h2:mem:apple;MODE=MySQL"></property>
+    </jdbc-connection-pool>
+    <!-- pineapple -->
+    <jdbc-resource pool-name="pineapple_pool" jndi-name="jdbc/pineapple_data_source"></jdbc-resource>
+    <jdbc-connection-pool name="pineapple_pool" datasource-classname="org.h2.jdbcx.JdbcDataSource">
+        <property name="user" value="sa"></property>
+        <property name="password" value=""></property>
+        <property name="driverClass" value="org.h2.Driver"></property>
+        <property name="url" value="jdbc:h2:mem:pineapple;MODE=MySQL"></property>
+    </jdbc-connection-pool>
+</resources>
